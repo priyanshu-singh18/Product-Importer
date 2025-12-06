@@ -1,0 +1,199 @@
+.imports-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Upload Section */
+.upload-section {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.upload-section h2 {
+  margin-bottom: 1rem;
+  color: #2d3748;
+}
+
+.upload-area input[type="file"] {
+  padding: 0.5rem;
+  border: 2px dashed #cbd5e0;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.file-info {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-info button {
+  padding: 0.5rem 1.5rem;
+  background: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.file-info button:hover:not(:disabled) {
+  background: #2c5282;
+}
+
+.file-info button:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+}
+
+.upload-progress {
+  margin-top: 1rem;
+}
+
+.upload-progress-bar {
+  height: 8px;
+  background: #edf2f7;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.upload-progress-fill {
+  height: 100%;
+  background: #3182ce;
+  transition: width 0.3s;
+}
+
+.upload-progress-text {
+  font-size: 0.875rem;
+  color: #4a5568;
+  text-align: center;
+}
+
+/* Imports List */
+.imports-list {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.imports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.import-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.import-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.import-card.completed {
+  border-left: 4px solid #48bb78;
+}
+
+.import-card.failed {
+  border-left: 4px solid #e53e3e;
+}
+
+.import-card.running {
+  border-left: 4px solid #3182ce;
+}
+
+.import-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.import-header strong {
+  color: #2d3748;
+  word-break: break-word;
+}
+
+.import-time {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+.import-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #edf2f7;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #3182ce;
+  transition: width 0.3s;
+}
+
+.import-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.import-actions button {
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-errors {
+  background: #fef5e7;
+  color: #d97706;
+}
+
+.btn-errors:hover {
+  background: #fcd34d;
+}
+
+.btn-products {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.btn-products:hover {
+  background: #93c5fd;
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-delete:hover {
+  background: #fecaca;
+}
