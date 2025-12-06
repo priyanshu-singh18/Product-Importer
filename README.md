@@ -31,7 +31,7 @@ A production-ready Django application for importing and managing products from C
 | **Database**   | PostgreSQL with optimized indexes     |
 | **Task Queue** | Celery + Redis                        |
 | **Real-time**  | Django Channels (WebSocket)           |
-| **Storage**    | Cloudflare R2 (S3-compatible) / Local |
+| **Storage**    | S3                                    |
 | **Validation** | Pydantic v2 for type-safe DTOs        |
 | **Deployment** | Docker + Docker Compose               |
 | **API Docs**   | drf-spectacular (Swagger/ReDoc)       |
