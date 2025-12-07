@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: django-web
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "daphne -b 0.0.0.0 -p $PORT mysite.asgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: django-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: django-redis
+          type: keyvalue
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+
+  - type: worker
+    name: celery-worker
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "celery -A mysite worker -l info"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: django-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: django-redis
+          type: keyvalue
+          property: connectionString
+
+  - type: keyvalue
+    name: django-redis
+    plan: free
+    ipAllowList: []
+
+databases:
+  - name: django-db
+    plan: free
