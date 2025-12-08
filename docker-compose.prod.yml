@@ -5,8 +5,8 @@ services:
     image: postgres:15-alpine
     environment:
       POSTGRES_DB: acme_importer
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
@@ -42,7 +42,7 @@ services:
     env_file:
       - .env.prod
     environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@db:5432/acme_importer
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/acme_importer
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -64,7 +64,7 @@ services:
     env_file:
       - .env.prod
     environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@db:5432/acme_importer
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/acme_importer
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -86,8 +86,9 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - static_files:/usr/share/nginx/html/static:ro
       - media_files:/usr/share/nginx/html/media:ro
-      - certbot_conf:/etc/letsencrypt:ro
-      - certbot_www:/var/www/certbot:ro
+      - ./letsencrypt:/etc/letsencrypt    # host folder where certbot will store certs
+      - ./www/certbot:/var/www/certbot    # host folder for ACME webroot
+
     depends_on:
       - web
     restart: unless-stopped
@@ -97,8 +98,9 @@ services:
   certbot:
     image: certbot/certbot
     volumes:
-      - certbot_conf:/etc/letsencrypt
-      - certbot_www:/var/www/certbot
+      - ./letsencrypt:/etc/letsencrypt
+      - ./www/certbot:/var/www/certbot
+
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     networks:
       - app-network
@@ -107,8 +109,6 @@ volumes:
   postgres_data:
   media_files:
   static_files:
-  certbot_conf:
-  certbot_www:
 
 networks:
   app-network:

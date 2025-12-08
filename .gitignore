@@ -21,6 +21,9 @@ wheels/
 *.egg
 MANIFEST
 
+
+/letsencrypt
+
 # Virtual Environment
 venv/
 env/
@@ -38,6 +41,7 @@ db.sqlite3-journal
 
 # Environment Variables
 .env
+.env.prod
 .env.local
 .env.*.local
 
